@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}欢迎光临我的博客 {% endblock %}
+{% block headmessage %}
+    <h3>本站文章列表</h3>
+{% endblock %}
+
+{% block content %}
+
+{% for post in posts %}
+    <div class="panel panel-default">
+    <div class="panel-heading">
+<p>
+    <a href='/mainsite/post/{{ post.slug }}'>{{ post.title }}</a>
+
+</p>
+</div>
+    <div class="panel-body" style="background-color: #ffffdd">
+    <p>
+{#       筛选器#}
+        {{ post.body |truncatechars:40 }}
+
+    </p>
+    </div>
+<div class="panel-footer" style="background-color: #efefef">
+<p>
+    发布时间 :{{post.pub_date|date:"Y M d, h:m:s"  }}
+</p>
+</div>
+
+    </div>
+
+{% endfor %}
+{% endblock %}
