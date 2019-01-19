@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <h1 class="h1">ajax</h1>
+        <p>请输入两个数字</p>
+
+        <form action="/add/" method="get">
+            a: <input type="text" id="a" name="a"> <br>
+            b: <input type="text" id="b" name="b"> <br>
+            <p>result: <span id='result'></span></p>
+            <button type="button" id='sum'>提交</button>
+        </form>
+
+        <button id="ajax">调用ajax</button>
+        <p id='ajax_result'>数组:</p>
+
+        <button id="ajax_2">输出链表</button>
+        <p id="ajax_result_2">这才是数组</p>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            {# id为sum的块 响应点击函数#}
+            $("#sum").click(function () {
+                var a = $("#a").val();
+                var b = $("#b").val();
+
+                $.get("/blog/add/", {'a': a, 'b': b},
+                    function (ret) {
+                        $('#result').html(ret)
+                    }
+                )
+
+            });
+
+        });
+
+        $(document).ready(function () {
+            $("#ajax").click(function () {
+                $.get("/blog/ajax/", function (ret) {
+                    $('#ajax_result').append(ret.twz + '<br>')
+                })
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('#ajax_2').click(function () {
+
+                $.get("{% url 'blog:ajax_2' %}", function (ret) {
+
+                    $('#ajax_result_2').append(ret)
+                })
+            });
+        });
+    </script>
+{% endblock %}

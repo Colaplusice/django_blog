@@ -1,0 +1,4 @@
+Django
+django-markdown-deux
+markdown
+pytz

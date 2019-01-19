@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+{% block title %}
+    {% load staticfiles %}
+    {{ post.title }}
+{% endblock %}
+{% block headmessage %}
+    <h3>{{ post.title }}</h3>
+{% endblock %}
+
+{% block content %}
+    <p>
+        {{ post.body|markdown }}
+    </p>
+    <a href="/">回首页</a>
+
+{% endblock %}
+
