@@ -1,4 +1,3 @@
-# first_project
+# django blog
 
-显示文章的页面
-尝试了get和post以及模板类的使用
+博客框架和django实验
